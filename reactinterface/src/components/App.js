@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import '../css/App.css';
-import { render } from "react-dom";
-import { FaBeer } from 'react-icons/fa';
+
+import AddAppointments from './AddAppointments';
+import SearchAppointments from './SearchAppointments';
+import ListAppointments from './ListAppointments';
 
 class App extends Component {
   render() {
@@ -11,9 +13,9 @@ class App extends Component {
           <div className="row">
             <div className="col-md-12 bg-white">
               <div className="container">
-                <div>Add Appointments</div>
-                <div>Search Appointments</div>
-                <div>List Appointments</div>
+                <AddAppointments />
+                <ListAppointments />
+                <SearchAppointments />
               </div>
             </div>
           </div>
