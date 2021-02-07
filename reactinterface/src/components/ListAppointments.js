@@ -18,9 +18,11 @@ class ListAppointments extends Component {
                             <div className="pet-head d-flex">
                                 <span className="pet-name">{item.aptId}: {item.petName}</span>
                                 <span className="apt-date ml-auto">
-                                    <Moment format="MMM-D, HH:mm" parse="YYYY-MM-D hh:mm">
-                                        {item.aptDate}
-                                    </Moment>
+                                    <Moment
+                                        date={item.aptDate}
+                                        parse="YYYY-MM-dd HH:mm"
+                                        format="MMM Do, h:mma"
+                                    />
                                 </span>
                             </div>
 
