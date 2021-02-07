@@ -20,7 +20,7 @@ class ListAppointments extends Component {
                                 <span className="apt-date ml-auto">
                                     <Moment
                                         date={item.aptDate}
-                                        parse="YYYY-MM-dd HH:mm"
+                                        parse="YYYY-MM-D HH:mm"
                                         format="MMM Do, h:mma"
                                     />
                                 </span>
