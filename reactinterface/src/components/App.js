@@ -17,12 +17,14 @@ class App extends Component {
       formDisplay: false,
       orderBy: 'petName',
       orderDir: 'asc',
+      queryText: '',
       lastIndex: 0
     }
     this.deleteAppointment = this.deleteAppointment.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.addAppointment = this.addAppointment.bind(this);
     this.changeOrder = this.changeOrder.bind(this);
+    this.searchApts = this.searchApts.bind(this);
   }
 
   toggleForm() {
@@ -35,6 +37,12 @@ class App extends Component {
     this.setState({
       orderBy: order,
       orderDir: dir
+    })
+  }
+
+  searchApts(query) {
+    this.setState({
+      queryText: query
     })
   }
 
@@ -82,7 +90,7 @@ class App extends Component {
       order = -1;
     }
 
-    filteredApts.sort((a,b) => {
+    filteredApts = filteredApts.sort((a,b) => {
       if (a[this.state.orderBy].toLowerCase() < 
         b[this.state.orderBy].toLowerCase()
         ) {
@@ -90,6 +98,18 @@ class App extends Component {
         } else {
           return order;
         }
+    }).filter(eachItem => {
+      return (
+        eachItem['petName']
+        .toLowerCase()
+        .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['ownerName']
+        .toLowerCase()
+        .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['aptNotes']
+        .toLowerCase()
+        .includes(this.state.queryText.toLowerCase())
+      );
     });
 
     return (
@@ -104,8 +124,9 @@ class App extends Component {
                   addAppointment={this.addAppointment} />
                 <SearchAppointments 
                   orderBy = {this.state.orderBy}
-                  orderDir = {this.state.orderDir}  
+                  orderDir = {this.state.orderDir} 
                   changeOrder = {this.changeOrder}
+                  searchApts = {this.searchApts}
                 />
                 <ListAppointments 
                   appointments={filteredApts}
